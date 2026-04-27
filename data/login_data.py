@@ -1,0 +1,4 @@
+test_data = [
+    {"username": "tomsmith", "password": "SuperSecretPassword!"},
+    {"username": "wrong", "password": "wrong"}
+]
