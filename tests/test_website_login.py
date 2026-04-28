@@ -1,18 +1,18 @@
-from playwright.sync_api import sync_playwright
+from utils.browser_setup import launch_browser
 from pages.login_page import LoginPage
 
 
 def test_login_success():
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
-        page = browser.new_page()
+    p, browser, page = launch_browser()
 
-        page.goto("https://the-internet.herokuapp.com/login")
-        login = LoginPage(page)
-        login.enter_username("tomsmith")
-        login.enter_password("SuperSecretPassword!")
-        login.click_login()
+    page.goto("https://the-internet.herokuapp.com/login")
 
-        assert "Secure Area" in page.content()
+    login = LoginPage(page)
+    login.enter_username("tomsmith")
+    login.enter_password("SuperSecretPassword!")
+    login.click_login()
 
-        browser.close()
+    assert "Secure Area" in page.content()
+
+    browser.close()
+    p.stop()
