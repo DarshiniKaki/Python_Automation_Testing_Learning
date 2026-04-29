@@ -1,7 +1,7 @@
 import requests
 
 
-def test_create_post():
+def test_post_api():
     data = {
         "title": "test",
         "body": "automation",
