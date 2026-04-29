@@ -1,8 +1,20 @@
 import requests
 
 
-def test_get_api():
-    response = requests.get("https://jsonplaceholder.typicode.com/users/1")
+def test_create_post():
+    data = {
+        "title": "test",
+        "body": "automation",
+        "userId": 1
+    }
 
-    assert response.status_code == 200
-    assert "username" in response.json()
+    response = requests.post(
+        "https://jsonplaceholder.typicode.com/posts",
+        json=data
+    )
+
+    print(response.status_code)
+    print(response.json())
+
+    assert response.status_code == 201
+    assert response.json()["title"] == "test"
